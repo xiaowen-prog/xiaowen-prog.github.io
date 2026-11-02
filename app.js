@@ -22,19 +22,19 @@ copyWechat.addEventListener('click',async()=>{
  const link=document.getElementById('project-switch');
  const word=document.getElementById('project-word');
  if(!link||!word)return;
- const entries=[...projects].map(card=>({name:card.querySelector('h3').textContent.trim(),id:card.id}));
+ const entries=[...projects].map(card=>({name:card.querySelector('h3').textContent.trim(),label:({'project-learning':'学习教练','project-teardown':'产品拆解','project-discovery':'需求挖掘','project-design':'设计指导','project-website':'个人网站'})[card.id],id:card.id}));
  const motion=matchMedia('(prefers-reduced-motion: reduce)');
  const chars='01/<>_+*';
  let index=-1,timer=0,frame=0,paused=false,inView=true,lastTick=0;
  function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);}
  function fit(){word.style.fontSize='';const available=link.clientWidth;const natural=word.scrollWidth;if(available>0&&natural>available){word.style.fontSize=(parseFloat(getComputedStyle(word).fontSize)*available/natural*.97)+'px';}}
- function resolve(){if(index<0)return;word.textContent=entries[index].name;link.classList.add('is-project');fit();}
+ function resolve(){if(index<0)return;word.textContent=entries[index].label;link.classList.add('is-project');fit();}
  function schedule(delay=3400){clearTimeout(timer);if(!paused&&inView&&!document.hidden&&!motion.matches)timer=setTimeout(next,delay);}
  function next(){
   cancel();index=(index+1)%entries.length;
   const entry=entries[index];link.href='#'+entry.id;link.setAttribute('aria-label','查看'+entry.name+'项目');link.classList.add('is-project');
   if(motion.matches){resolve();return;}
-  const target=Array.from(entry.name);const start=performance.now();lastTick=0;
+  const target=Array.from(entry.label);const start=performance.now();lastTick=0;
   function draw(now){const elapsed=now-start;
    if(now-lastTick>55){const revealed=Math.floor(Math.max(0,(elapsed-120)/650)*target.length);word.textContent=target.map((char,i)=>i<revealed?char:chars[Math.floor(Math.random()*chars.length)]).join('');fit();lastTick=now;}
    if(elapsed<800)frame=requestAnimationFrame(draw);else{resolve();schedule();}
