@@ -32,8 +32,7 @@
  // Hero parallax (subtle)
  const heroImg=document.querySelector('.hero-image');
  if(heroImg){
-  g.set(heroImg,{scale:1.03,transformOrigin:'50% 50%'});
-  g.to(heroImg,{yPercent:3,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  g.set(heroImg,{scale:1,transformOrigin:'50% 50%'});
   g.to('.hero-content',{yPercent:-6,opacity:.35,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
  }
 
