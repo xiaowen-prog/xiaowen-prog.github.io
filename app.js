@@ -4,9 +4,11 @@ const buttons=document.querySelectorAll('[data-filter]');
 const projects=document.querySelectorAll('.project');
 buttons.forEach(button=>button.addEventListener('click',()=>{
  buttons.forEach(item=>{item.classList.toggle('active',item===button);item.setAttribute('aria-pressed',String(item===button));});
+ const motion=window.__motion;const state=motion&&motion.capture?motion.capture():null;
  let count=0;
  projects.forEach(project=>{const visible=button.dataset.filter==='all'||project.dataset.type===button.dataset.filter;project.classList.toggle('hidden',!visible);if(visible)count++;});
  document.getElementById('result').textContent=`展示 ${count} 个公开项目`;
+ if(state)motion.play(state);
 }));
 const copyWechat=document.getElementById('copy-wechat');
 copyWechat.addEventListener('click',async()=>{
