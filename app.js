@@ -46,8 +46,9 @@ copyWechat.addEventListener('click',async()=>{
  link.addEventListener('focus',pause);link.addEventListener('blur',resume);
  link.addEventListener('click',event=>{
   event.preventDefault();cancel();if(index<0)index=0;resolve();const entry=entries[index];
-  buttons[0].click();const card=document.getElementById(entry.id);if(!motion.matches&&window.__portfolioScroll)window.__portfolioScroll(card);else card.scrollIntoView({behavior:motion.matches?'instant':'smooth',block:'center'});
-  history.replaceState(null,'','#'+entry.id);card.focus({preventScroll:true});card.classList.add('is-arrival');setTimeout(()=>card.classList.remove('is-arrival'),2200);
+  const card=document.getElementById(entry.id);const filtered=buttons[0].getAttribute('aria-pressed')!=='true';if(filtered)buttons[0].click();
+  const arrive=()=>{if(!motion.matches&&window.__portfolioScroll)window.__portfolioScroll(card);else card.scrollIntoView({behavior:motion.matches?'instant':'smooth',block:'center'});history.replaceState(null,'','#'+entry.id);card.focus({preventScroll:true});card.classList.add('is-arrival');setTimeout(()=>card.classList.remove('is-arrival'),2200);};
+  if(filtered&&window.__motion&&!motion.matches)setTimeout(arrive,700);else arrive();
  });
  document.addEventListener('visibilitychange',()=>{cancel();resolve();if(!document.hidden)schedule();});
  new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;cancel();resolve();if(inView)schedule(index<0?1500:3400);}).observe(link);
