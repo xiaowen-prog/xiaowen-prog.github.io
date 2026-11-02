@@ -22,7 +22,7 @@ copyWechat.addEventListener('click',async()=>{
  const link=document.getElementById('project-switch');
  const word=document.getElementById('project-word');
  if(!link||!word)return;
- const entries=[...projects].map(card=>({name:card.querySelector('h3').textContent.trim(),label:({'project-learning':'学习教练','project-teardown':'产品拆解','project-discovery':'需求挖掘','project-design':'设计指导','project-website':'个人网站'})[card.id],id:card.id}));
+ const entries=[...projects].map(card=>({name:card.querySelector('h3').textContent.trim(),label:({'project-learning':'COACH.','project-teardown':'RESEARCH.','project-discovery':'DISCOVERY.','project-design':'DESIGN.','project-website':'PORTFOLIO.'})[card.id],id:card.id}));
  const motion=matchMedia('(prefers-reduced-motion: reduce)');
  const chars='01/<>_+*';
  let index=-1,timer=0,frame=0,paused=false,inView=true,lastTick=0;
