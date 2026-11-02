@@ -17,7 +17,7 @@
   lenis.on('scroll',ScrollTrigger.update);
   g.ticker.add(t=>lenis.raf(t*1000));
   g.ticker.lagSmoothing(0);
-  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  document.querySelectorAll('a[href^="#"]:not(#project-switch)').forEach(a=>a.addEventListener('click',e=>{
    const id=a.getAttribute('href');
    const target=id==='#'?0:document.querySelector(id);
    if(target===null)return;
@@ -25,6 +25,7 @@
    lenis.scrollTo(target,{offset:0,duration:1.2});
    if(id!=='#')history.replaceState(null,'',id);else history.replaceState(null,'',location.pathname+location.search);
   }));
+  window.__portfolioScroll=target=>lenis.scrollTo(target,{offset:-50,duration:1.2});
   if(location.hash&&document.querySelector(location.hash))requestAnimationFrame(()=>lenis.scrollTo(location.hash,{immediate:true}));
  }
 
@@ -46,7 +47,7 @@
  });
 
  // 2. Headline line reveal (SplitText with mask, manual fallback)
- const heads=['#hero-title','.contact h2'].map(s=>document.querySelector(s)).filter(Boolean);
+ const heads=['.contact h2'].map(s=>document.querySelector(s)).filter(Boolean);
  const manualSplit=el=>{
   // split on <br>: wrap each line in mask + inner span
   const lines=[[]];
@@ -61,11 +62,10 @@
   if(window.SplitText){lines=window.SplitText.create(el,{type:'lines',mask:'lines',linesClass:'split-line',aria:'hidden'}).lines;}
   else{lines=manualSplit(el);[...el.children].forEach(c=>c.setAttribute('aria-hidden','true'));}
   const tween={yPercent:105,duration:1.1,ease:'power4.out',stagger:.12};
-  if(idx===0)g.from(lines,{...tween,delay:.15});
-  else g.from(lines,{...tween,scrollTrigger:{trigger:el,start:'top 85%',once:true}});
+  g.from(lines,{...tween,scrollTrigger:{trigger:el,start:'top 85%',once:true}});
  });
  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{runHeads();ScrollTrigger.refresh();});
- g.from('.hero .eyebrow, .hero-bottom, .hero-caption',{autoAlpha:0,y:20,duration:1,ease:'power3.out',stagger:.1,delay:.45});
+ g.from('#hero-title, .hero .eyebrow, .hero-bottom, .hero-caption',{autoAlpha:0,y:20,duration:1,ease:'power3.out',stagger:.1,delay:.45});
 
  // 3a. Card tilt + glow (fine pointers only)
  const fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
