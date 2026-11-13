@@ -168,3 +168,58 @@
   .intro { column-gap: 36px; }
   .intro h2 { font-size: 30px; }
 }
+
+
+/* Portfolio audit pass: restore the project covers and keep the interaction hierarchy intact. */
+@media (min-width: 651px) {
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px 28px; }
+  .project:first-child { display: block; grid-column: span 2; margin-bottom: 0; }
+  .project:not(:first-child) { display: block; padding: 0; border-top: 0; }
+  .project:not(:first-child) .cover { display: block; height: 300px; }
+  .project:first-child .cover { height: 350px; }
+  .project:last-child { grid-column: span 2; }
+  .project:first-child .project-info,
+  .project:not(:first-child) .project-info { margin-top: 20px; }
+}
+@media (max-width: 650px) {
+  .projects { display: grid; grid-template-columns: 1fr; gap: 34px; }
+  .project:not(:first-child) { display: block; padding: 0; border-top: 0; }
+  .project:not(:first-child) .cover { display: block; height: 280px; }
+  .project:not(:first-child) .project-info { margin-top: 20px; }
+}
+
+/* Audit pass: navigation, contrast, touch targets, and a restrained accent color. */
+:root { --accent: #b9d4f2; }
+header {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(8, 14, 23, .92), rgba(8, 14, 23, .58));
+  backdrop-filter: blur(14px);
+}
+.hero-caption {
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: rgba(8,14,23,.54);
+  backdrop-filter: blur(12px);
+}
+.filters .active { background: var(--accent); color: var(--bg); }
+.project { transition: transform .25s ease, opacity .25s ease; }
+.project:hover { transform: translateY(-4px); }
+footer { overflow: visible; }
+.footer-wordmark { overflow: visible; padding-bottom: .08em; }
+nav a,
+.filters button,
+.contact-methods > a,
+.contact-methods > button,
+.ghost { min-height: 44px; }
+@media (max-width: 650px) {
+  header { position: fixed; height: 68px; padding-inline: 20px; background: linear-gradient(180deg, rgba(8,14,23,.94), rgba(8,14,23,.68)); }
+  nav { gap: 4px; }
+  nav a { min-height: 44px; padding: 10px 8px; }
+  .nav-cta { min-height: 44px; }
+  .filters { gap: 6px; width: 100%; overflow-x: auto; }
+  .filters button { min-height: 44px; padding: 10px 15px; white-space: nowrap; }
+  .hero-caption { padding: 8px 10px; }
+}
