@@ -223,3 +223,21 @@ nav a,
   .filters button { min-height: 44px; padding: 10px 15px; white-space: nowrap; }
   .hero-caption { padding: 8px 10px; }
 }
+
+/* Desktop layout polish: make the header a full-width band and close the project grid gaps. */
+@media (min-width: 651px) {
+  header {
+    width: 100%;
+    max-width: none;
+    left: 0;
+    right: 0;
+    transform: none;
+    padding-inline: max(48px, calc((100% - 1150px) / 2));
+  }
+  header nav { transform: translateY(4px); }
+  .project:not(:first-child) { grid-column: auto; }
+  .project:first-child .project-description {
+    max-width: 760px;
+    width: 100%;
+  }
+}
