@@ -26,3 +26,103 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC'
 /* Priority pass: legible mobile hero, one featured project, decisive ending. */
 .hero-identity>span{display:inline-block}.headline-line{align-items:flex-end}#project-switch{align-self:flex-end;align-items:flex-end;padding-bottom:0}#project-switch.is-project #project-word{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-style:normal;font-weight:900;font-size:clamp(45px,7.8vw,120px);line-height:.85;letter-spacing:-.025em;transform:translateY(-.025em)}#project-word{line-height:.85}.hero-bottom p{background:none;border-radius:0;padding:0;margin-left:0}.projects{display:block}.project:first-child{display:block;margin-bottom:42px}.project:first-child .cover{height:370px}.project:first-child .artifact-preview{gap:30px;padding:42px}.project:first-child .artifact-flow{gap:14px}.project:first-child .artifact-flow>span{font-size:24px;padding:17px 20px}.project:first-child .artifact-note{font-size:16px}.project:not(:first-child){display:block;padding:25px 0;border-top:1px solid var(--line)}.project:not(:first-child) .cover{display:none}.project:not(:first-child) .project-info{margin-top:0}.project:not(:first-child) .project-description{max-width:850px;margin-top:10px}.project:not(:first-child) .project-info h3{font-size:22px}.case-entry{display:none}.case-actions{display:flex;align-items:center;gap:28px;margin-top:30px}.case-actions .underlink{font-size:14px}footer{flex-wrap:wrap;row-gap:32px;padding-bottom:0;overflow:hidden}.footer-wordmark{flex:0 0 100%;font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(100px,22vw,310px);line-height:.8;letter-spacing:-.035em;font-weight:900;text-align:center;margin-top:18px;color:#dce5ef}.nav-cta{font-size:14px}.hero:after{content:none}@media(max-width:650px){header{gap:15px;padding-inline:24px}header nav{gap:12px}header nav a{font-size:12px}.nav-cta{font-size:12px;padding:9px 11px;gap:7px;white-space:nowrap}.nav-cta .icon{width:13px;height:13px}.nav-cta span{font-size:13px}.hero-content{z-index:1}.hero:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,10,18,.82) 0%,rgba(5,10,18,.48) 55%,rgba(5,10,18,.12) 100%),linear-gradient(0deg,rgba(5,10,18,.65),transparent 65%)}.hero-caption{z-index:1}.hero-identity{font-size:14px;max-width:none;line-height:1.9}.hero-identity>span{display:block;white-space:nowrap}.hero-identity>span:last-child{font-size:clamp(12px,3.7vw,15px)}.hero-bottom p{background:none;padding:0;margin-left:0;max-width:none}.hero h1{font-size:24vw}.headline-line{align-items:flex-end;gap:.1em}#project-switch{align-self:flex-end}#project-switch.is-project #project-word{font-size:clamp(28px,9.3vw,53px);line-height:.85}.project:first-child{margin-bottom:25px}.project:first-child .cover{height:330px}.project:first-child .artifact-preview{padding:26px 22px;gap:23px}.project:first-child .artifact-flow{gap:9px}.project:first-child .artifact-flow>span{font-size:17px;padding:12px 13px}.project:first-child .artifact-note{font-size:14px}.project:not(:first-child){padding:23px 0}.project:not(:first-child) .project-info h3{font-size:20px}.project:not(:first-child) .project-description{font-size:15px}.case-actions{align-items:start;flex-direction:column;gap:23px}.footer-wordmark{font-size:23vw;line-height:.85;margin-top:14px}footer{row-gap:23px}.hero-caption{font-size:11px}}
 @media(max-width:380px){header{gap:12px;padding-inline:20px}header nav{gap:9px}.nav-cta{font-size:11px;padding:8px}.logo{font-size:29px}}
+
+/* Learning coach stepper: keep the active state inside the site's deep-blue visual language. */
+.project:first-child .artifact-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 8px;
+  list-style: none;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(169, 194, 220, .35) transparent;
+}
+.project:first-child .artifact-flow::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 9px;
+  height: 1px;
+  background: rgba(127, 157, 189, .34);
+  pointer-events: none;
+  z-index: 0;
+}
+.project:first-child .artifact-flow > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 18px auto;
+  gap: 11px;
+  align-items: start;
+  justify-items: center;
+  min-width: 0;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #aebaca;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  transition: color .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+.project:first-child .artifact-flow > span::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #7f9dbd;
+  box-shadow: 0 0 0 4px #17202b;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.project:first-child .artifact-flow > span:nth-child(1),
+.project:first-child .artifact-flow > span:nth-child(2) { color: #bdc9d7; }
+.project:first-child .artifact-flow > span:nth-child(3) {
+  position: relative;
+  color: #e7f1fb;
+  font-weight: 500;
+  transform: translateY(-1px);
+}
+.project:first-child .artifact-flow > span:nth-child(3)::before {
+  width: 11px;
+  height: 11px;
+  margin-top: 4px;
+  background: #b9d4f2;
+  box-shadow: 0 0 0 4px #17202b, 0 0 0 5px rgba(185, 212, 242, .34), 0 0 18px rgba(185, 212, 242, .52);
+}
+.project:first-child .artifact-flow > span:nth-child(3)::after {
+  content: '';
+  position: absolute;
+  left: 28%;
+  right: 28%;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 999px;
+  background: #b9d4f2;
+  opacity: .9;
+}
+.project:first-child .artifact-flow > span:nth-child(4),
+.project:first-child .artifact-flow > span:nth-child(5) { opacity: .78; }
+.project:first-child .artifact-flow > span:nth-child(4):hover,
+.project:first-child .artifact-flow > span:nth-child(5):hover,
+.project:first-child .artifact-flow > span:focus-visible {
+  color: #e0ebf7;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+@media (max-width: 650px) {
+  .project:first-child .artifact-flow {
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    min-width: 600px;
+  }
+  .project:first-child .artifact-flow > span { font-size: 14px; padding-inline: 8px; }
+}
