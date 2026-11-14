@@ -241,3 +241,27 @@ nav a,
     width: 100%;
   }
 }
+
+/* Interaction polish: keep anchored sections clear of the fixed header and use the site's accent for focus. */
+html { scroll-padding-top: 110px; }
+a:focus-visible,
+button:focus-visible {
+  outline-color: #b9d4f2;
+  box-shadow: 0 0 0 4px rgba(185,212,242,.16);
+}
+.article-row {
+  border-radius: 10px;
+  transition: background .2s ease, transform .2s ease, padding-left .2s ease;
+}
+.article-row:hover {
+  background: rgba(185,212,242,.06);
+  padding-left: 12px;
+  transform: translateX(4px);
+}
+@media (max-width: 650px) {
+  html { scroll-padding-top: 84px; }
+  .article-row:hover {
+    padding-left: 0;
+    transform: none;
+  }
+}
